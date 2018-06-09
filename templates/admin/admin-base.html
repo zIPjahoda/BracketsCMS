@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>{{ title }} :: BracketsCMS Administration</title>
+
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}">
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-theme.css" %}">
+    <script src="{% static "jquery/jquery.min.js" %}"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/cms-admin/">BracketsCMS</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="/cms-admin/static-page/overview">Static pages</a></li>
+                <li><a href="/cms-admin/post/overview/">Articles</a></li>
+                <li><a href="/cms-admin/category/overview/">Categories</a></li>
+                <li><a href="/cms-admin/navigation-overview">Navigation</a></li>
+                {% if logged_in %}
+                    <li><a href="/cms-admin/logout">Log out</a></li>
+                {% else %}
+                    <li><a href="/cms-admin/login">Log in</a></li>
+                {% endif %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user_full_name %}
+                    <li><a href="">Logged in: {{ user_full_name }}</a></li>{% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+</div>
+
+<script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+</body>
+</html>

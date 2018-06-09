@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+        <title>{{ title }} :: {{ site_title }}</title>
+    {% else %}
+        <title>{{ site_title }}</title>
+    {% endif %}
+    <meta name="keywords" content="{{ site_keywords }}"/>
+    <meta name="description" content="{{ site_description }}"/>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <nav>
+        <ul>
+            {% for item in navigation_items %}
+                <li><a href="{{ item.link }}">{{ item.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% block content %}{% endblock %}
+</body>
+</html>

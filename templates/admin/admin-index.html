@@ -1,0 +1,25 @@
+{% extends "admin/admin-base.html" %}
+
+{% block content %}
+
+    <h1>Administrace BracketsCMS</h1>
+
+    <h2>Nejnovější příspěvky: </h2>
+    <div class="table-responsive">
+        <table class="table">
+            <tr>
+                <th>Titulek</th>
+                <th>Autor</th>
+            </tr>
+            {% for article in newest_posts %}
+                <tr>
+                    <td>{{ article.title }}</td>
+                    <td>{{ article.author.first_name }} {{ article.author.last_name }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <p>Poslední přihlášení: {{ user_last_login }}</p>
+
+{% endblock %}

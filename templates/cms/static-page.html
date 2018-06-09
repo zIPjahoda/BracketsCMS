@@ -1,0 +1,14 @@
+{% extends "cms/base.html" %}
+
+{% block content %}
+
+    <article>
+        <header>
+            <h1>{{ item.title }}</h1>
+        </header>
+        <section>
+            {{ item.contents }}
+        </section>
+    </article>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "admin/admin-base.html" %}
+{% load filters %}
+
+{% block content %}
+    <h2>Login into BracketsCMS</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username: </label>
+            {{ form.username|addclass:"form-control" }}
+        </div>
+        <div class="form-group">
+            <label for="password">Password: </label>
+            {{ form.password|addclass:"form-control" }}
+        </div>
+
+        <input type="submit" class="btn btn-default" value="Login" />
+    </form>
+{% endblock %}

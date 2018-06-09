@@ -1,0 +1,58 @@
+{% extends "admin/admin-base.html" %}
+
+{% block content %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Item title</th>
+                <th>Item link</th>
+                <th>Actions</th>
+            </tr>
+            <tbody id="nav-table-body">
+            {% for item in items %}
+                <tr id="item-id-{{ item.id }}">
+                    <td>
+                        <input class="form-control" type="text"
+                               name="nav-item-title-{{ item.id }}"
+                               id="nav-item-title-{{ item.id }}"
+                               value="{{ item.title }}"/>
+                    </td>
+                    <td><input class="form-control"
+                               type="text"
+                               name="nav-item-link-{{ item.id }}"
+                               id="nav-item-link-{{ item.id }}"
+                               value="{{ item.link }}"/>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-default" id="nav-item-remove-{{ item.id }}">Remove</button>
+                        <button type="button" class="btn btn-default" id="nav-item-save-{{ item.id }}" disabled>Save</button>
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr id="row-template" class="hidden">
+                <td>
+                    <input class="form-control" type="text"
+                           name="nav-item-title-#itemid#"
+                           id="nav-item-title-#itemid#"
+                           value=""/>
+                </td>
+                <td><input class="form-control"
+                           type="text"
+                           name="nav-item-link-#itemid#"
+                           id="nav-item-link-#itemid#"
+                           value=""/>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-default" id="nav-item-remove-#itemid#">Remove</button>
+                    <button type="button" class="btn btn-default" id="nav-item-save-#itemid#">Save</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <button class="btn btn-default right" id="add-nav-item">Add item</button>
+
+    {% load staticfiles %}
+    <script src="{% static "js/navigation-overview-table-control.js" %}"></script>
+{% endblock %}

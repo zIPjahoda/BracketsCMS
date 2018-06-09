@@ -1,0 +1,32 @@
+{% extends "admin/admin-base.html" %}
+
+{% block content %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>URL</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in pages %}
+                <tr>
+                    <td>{{ item.title }}</td>
+                    <td>/{{ item.url }}</td>
+                    <td>
+                        <a href="/cms-admin/category/edit/{{ item.url }}">Edit</a>
+                        <a href="/cms-admin/category/delete/{{ item.url }}">Remove</a>
+                        <a href="/cms-admin/category/detail/{{ item.url }}">Detail</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="/cms-admin/category/create">Add</a>
+    </div>
+
+    {% load static %}
+    <script src="{% static "js/delete-confirmation.js" %}"></script>
+{% endblock %}

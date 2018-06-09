@@ -1,0 +1,48 @@
+{% extends "admin/admin-base.html" %}
+{% load filters %}
+
+{% block content %}
+
+    <h2>Register a new user</h2>
+
+    <div class="errors">
+    {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+    {% endfor %}
+    </div>
+
+    <form method="post" role="form">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.username.label_tag }}
+            {{ form.username|addclass:"form-control" }}
+        </div>
+        <div class="form-group">
+            {{ form.first_name.label_tag }}
+            {{ form.first_name|addclass:"form-control" }}
+        </div>
+        <div class="form-group">
+            {{ form.last_name.label_tag }}
+            {{ form.last_name|addclass:"form-control" }}
+        </div>
+        <div class="form-group">
+            {{ form.email.label_tag }}
+            {{ form.email|addclass:"form-control" }}
+        </div>
+        <div class="form-group">
+            {{ form.password.label_tag }}
+            {{ form.password|addclass:"form-control" }}
+        </div>
+        <div class="form-group">
+            {{ form.password_again.label_tag }}
+            {{ form.password_again|addclass:"form-control" }}
+        </div>
+
+        <input type="submit" name="submit" value="Register" class="btn btn-default"/>
+    </form>
+
+    {% load static %}
+    <script src="{% static "js/password-match.js" %}"></script>
+{% endblock %}

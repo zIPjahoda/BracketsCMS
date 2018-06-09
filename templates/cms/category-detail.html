@@ -1,0 +1,9 @@
+{% extends 'cms/base.html' %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    {% for article in article_all %}
+        <a href="/post/{{ article.url }}/">{{ article.title }}</a><br/>
+        <p>{{ article.description }}</p><br/><br/><br/>
+    {% endfor %}
+{% endblock %}
